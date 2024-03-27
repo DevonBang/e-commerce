@@ -1,0 +1,169 @@
+:root{
+    --pink:#00fff0;
+}
+
+*{
+    margin:0; padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif, rubik;
+    outline: none; border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+}
+
+body .text{
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    position: fixed;
+    top: 30%; left: 30%; right: 0;
+    display: flex;
+    align-items: center;
+}
+
+body .text1{
+    font-family: sans-serif;
+    font-size: 20px;
+    position: fixed;
+    top: 41%; left: 30%; right: 0;
+    font-weight: lighter;
+    display: flex;
+    align-items: center;
+}
+
+body .text2{
+    font-family: sans-serif;
+    font-size: 15px;
+    position: fixed;
+    top: 47%; left: 30%; right: 0;
+    font-weight: lighter;
+    display: flex;
+    color: #8A8A8A;
+    align-items: center;
+}
+
+body .text3{
+    font-family: sans-serif;
+    font-size: 12px;
+    position: fixed;
+    top: 72%; left: 78.5%; right: 0;
+    font-weight: lighter;
+    display: flex;
+    color: #668A89;
+    align-items: center;
+}
+
+.fa-eye{
+    position: fixed;
+    top: 37.2%; left: 32.3%;
+    font-size: 12px;
+    color: #ADADAD;
+}
+
+
+.view{
+    position: fixed;
+    top: 36.9%; left:31.5% ;
+    font-size: 11px;
+    color: #ADADAD;
+}
+
+.fa-truck{
+    position: fixed;
+    top: 37.2%; left: 40.3%;
+    font-size: 12px;
+    color: #ADADAD;
+}
+
+.truck{
+    position: fixed;
+    top: 36.9%; left:39.4% ;
+    font-size: 11px;
+    color: #ADADAD;
+}
+
+.shop{
+    font-family: sans-serif;
+    font-size: 15px;
+    position: fixed;
+    top: 78%; left: 79%; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #668A89;
+    color: #79bccf;
+    border-radius: .5rem;
+    width: 100px;
+    height: 30px;
+    transition: 0.3s;
+
+}
+
+.shop:hover a{
+    color: var(--pink);
+}
+
+.bi-cart{
+    color: #333;
+}
+
+.nav-link{
+    color: #333;
+}
+
+body .back{
+    font-family: sans-serif;
+    font-weight: lighter;
+    font-size: 15px;
+    position: fixed;
+    top: 25%; left: 2%; right: 0;
+    background-color: #668A89;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .5rem;
+    width: 70px;
+    
+}
+
+.back:hover{
+    color: var(--pink);
+}
+
+
+.barang{
+    position: fixed;
+    top: 30%; left: 10%; right: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.image{
+    position: fixed;
+    top: 75%; left: 10.5%;
+}
+
+.image2{
+    position: fixed;
+    top: 75%; left: 16.5%;
+}
+
+.image3{
+    position: fixed;
+    top: 75%; left: 22.5%;
+}
+
+
+.image:hover{
+    opacity: 0.5;
+}
+
+.image2:hover{
+    opacity: 0.5;
+}
+
+.image3:hover{
+    opacity: 0.5;
+}

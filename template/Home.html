@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page E-Commerce</title>
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="contanier">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <a class="navbar-brand" href="{{ route('Home') }}" style="margin-left: 25px;">SAUDAGAR</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 50px">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{{ route('home') }}" style="margin-right: 30px">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" style="margin-right: 30px">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="margin-right: 30px">About</a>
+                  </li>
+              </ul>
+                <ul class="navbar-nav ms-auto">
+                  <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                  <li class="nav-item">
+                    <div class="container">
+                      <a href="mycart.html" class="nav-link"><i class="bi bi-cart"></i>cart</a>
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Welcome Back, {{ auth()->user()->name }}
+                    </a>
+                    <ul class="dropdown-menu">
+                    @auth  
+                      @if(Auth::user()->role === 'admin')
+                          <li class="dropdown-item"><a class="text-decoration-none" href="{{ route('admin.index') }}">see dashboard</a></li>
+                      @else
+                          <li class="dropdown-item"><a class="text-decoration-none" href="{{ route('user.index') }}">My profile</a></li>
+                      @endif
+                          <li>
+                              <form class="block-none" action="{{ route('logout') }}" method="post">
+                                  @csrf
+                                  <button type="submit" class="dropdown-item">Logout</button>
+                              </form>
+                          </li>
+                     @endauth
+                    </ul>
+                  </li>
+              </ul>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="div-text">
+                <span>outfit of the day</span>
+                <h3>all your</h3>
+                <h1>styles are here</h1>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. <br> 
+                    Doloremque unde sunt eum illum ab tempora illo iure sequi <br> minus culpa.</p>
+                    <a href="#" class="btn">buy now</a>
+            </div>
+
+            <div class="div-img">
+                <img id="big-img" src="{{ asset('img/jacket1.png') }}" alt="">
+            </div>
+
+            <div class="small-img">
+                <img onclick="myTshirt(this.src)" src="{{ asset('img/jacket1.png') }}" alt="">
+                <img onclick="myTshirt(this.src)" src="{{ asset('img/jacket2.png') }}" alt="">
+                <img onclick="myTshirt(this.src)" src="{{ asset('img/jacket3.png') }}" alt="">
+            </div>
+        </div>
+    </div>
+    <h1 class="mt-3 mb-3 text-center">Produk Terbaru</h1>
+        <div class="row justify-content-center mb-3">
+                <div class="container-produk">
+                    <div class="row">
+                        <div class="col-md-4" style="width:1200px;">
+                            <div class="card">
+                                <img src="https://demo.saudagarwp.com/wp-content/uploads/sites/2/2019/01/bag-navy-3-300x300.webp" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">Messanger Bag</h5>
+                                    <p class="card-text">Rp 10.000</p>
+                                    <a href="Details.html" class="btn btn-primary">Read More...</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img src="https://demo.saudagarwp.com/wp-content/uploads/sites/2/2019/01/ripple-blue-4.webp" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">Cuman Baju v1</h5>
+                                    <p class="card-text">Rp 10.000</p>
+                                    <a href="Details.html" class="btn btn-primary">Read More...</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img src="https://demo.saudagarwp.com/wp-content/uploads/sites/2/2019/01/ripple-blue-4.webp" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">Cuman Baju v1</h5>
+                                    <p class="card-text">Rp 10.000</p>
+                                    <a href="Details.html" class="btn btn-primary">Read More...</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img src="https://demo.saudagarwp.com/wp-content/uploads/sites/2/2019/01/ripple-blue-4.webp" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">Cuman Baju v1</h5>
+                                    <p class="card-text">Rp 10.000</p>
+                                    <a href="Details.html" class="btn btn-primary">Read More...</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img src="https://demo.saudagarwp.com/wp-content/uploads/sites/2/2019/01/ripple-blue-4.webp" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">Cuman Baju v1</h5>
+                                    <p class="card-text">Rp 10.000</p>
+                                    <a href="Details.html" class="btn btn-primary">Read More...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    <script>
+        let bigImage = document.getElementById('big-img');
+
+        function myTshirt(shirt){
+            bigImage.src = shirt
+        }
+    </script>
+</body>
+
+<footer>
+
+    <div class="Content">
+        
+        <table style="width: 40%; height: 100px;">
+    <tr>
+        <th style="font-size: 20px; padding: 10px; padding-left: 20%;">Saudagar</th> 
+    </tr>
+    <tr>
+        <td style="font-size: 12px; padding-left: 20%; ">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet reprehenderit nihil optio cumque, distinctio voluptas maiores</td>
+    </tr>
+</table>
+<table style="width: 40%; height: 100px;">
+    <tr>
+        <th style="font-size: 20px; padding-left: 40%;">Link</th>
+    </tr>
+    <tr>
+        <td style="font-size: 12px; padding-left: 40%;">konfirmasi Pembayaran</td>
+    </tr>
+    <tr>
+        <td style="font-size: 12px; padding-left: 40%;">syarat & ketentuan</td>
+    </tr>
+    
+ </div>  
+    
+        
+</table>
+
+<hr style="padding-top: 100px;">
+
+</footer>
+<hr style="margin: 0px 0px;">
+<div class="footer_bottom">
+    <span style="padding: 10px; padding-left: 7.8%;">@Copyright Saudagar WP. All Rights Reserved</span>
+    </div>
+
+</html>

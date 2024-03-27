@@ -1,0 +1,76 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif, rubik;
+}
+
+.Profile{
+    position: relative;
+    left: 12%;
+    padding-top: 10%;
+
+}
+
+.Change{
+    position: absolute;
+    top: 34%; left: 23%;
+    background-color: #dadada;
+    border-radius: 0.5rem;
+}
+
+.Change:hover{
+    background-color: #668A89;
+}
+
+.Discard{
+    position: absolute;
+    top: 41%; left: 23%;
+}
+
+.Personal{
+    position: relative;
+    left: 10%;
+    padding-top: 50px;
+    color: #808080;
+    font-size: 20px;
+}
+
+.Data{
+    display: grid;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding-left: 150px;
+    padding-top: 40px;
+}
+  
+.grid-item {
+
+    padding: 20px;
+
+}
+
+.Save h4{
+    position: absolute;
+    top: 35%; left: 75%;
+    border-radius: 0.5rem;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    background-color: #dadada;
+}
+
+.Save h4:hover{
+    background-color: #668A89;
+}
+
+.profile{
+    position: absolute;
+    padding-top: 3%;
+    padding-left: 48%;
+    
+}
+

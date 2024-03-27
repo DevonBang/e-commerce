@@ -1,0 +1,86 @@
+:root{
+    --pink:#00fff0;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif, rubik;
+}
+.contanier{
+    width: 100%;
+    height: 100vh;
+    padding: 0 5px 0;
+}
+
+.contanier nav{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+nav ul li a{
+    color: #444;
+    text-transform: capitalize;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.checkout{
+    position: absolute;
+    top: 15%; left: 48%; 
+}
+
+.address{
+    background-color: #dadada;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    height: 70%;
+    width: 30%;
+    border-radius: .5rem;
+    position: absolute;
+    top: 25%; left: 11%;
+}
+
+.cardnum{
+    font-size: 12px;
+    position: absolute;
+    top: 60%; left: 65%;
+}
+
+.data{
+    position: absolute;
+    top: 15%; 
+}
+
+.top-details{
+    position: absolute;
+    top: 25%; left: 64%;
+    background: #f4f4f4;
+    border-radius: 0.5rem;
+    width: 18rem;
+    padding: 20px;
+}
+
+
+.Payment{
+    position: absolute;
+    top: 75%; left: 64.7%;
+    background-color: #dadada;
+    width: 17rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    cursor: pointer;
+}
+
+.Payment:hover{
+    background-color: #668A89;
+    transition: 0.1s;
+}
