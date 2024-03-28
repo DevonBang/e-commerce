@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function index() {
-        return view('User.dashboard');
+        $profile = Auth()->user();
+        return view('User.dashboard', ['profile' => $profile]);
     }
     public function profile() {
         $profile = Auth()->user();
@@ -24,8 +25,8 @@ class UserController extends Controller
     }
     public function update(Request $request, $id) {
         $validate = $request->validate([
-            'email'     => 'email',
-            'name' => 'min:5',
+            'email'     => 'required|email',
+            'name' => 'required|min:5',
             'image' => 'required|mimes:png,jpeg,jpg|max:2048',
         ]);
 
@@ -33,7 +34,7 @@ class UserController extends Controller
 
         $foto = $request->file('image');
         if($foto) {
-            $filename = date('Y-m-d').$foto->getClientOriginalName();
+            $filename = date('Y-m-d-').$foto->getClientOriginalName();
             $path = 'foto-user/'.$filename;
             
             if($find->image) {
@@ -48,16 +49,18 @@ class UserController extends Controller
         return redirect()->route('user.profile');
     }
     public function history() {
+        $profile = Auth()->user();
         $order = Order::where('user_id', Auth::user()->id)->orderBy('id', 'Desc')->get()->toArray();
-        // dd($orders);
-        return view('User.order.history', ['title' => 'history'])->with(compact('order'));
+        return view('User.order.history', ['title' => 'history', 'profile' => $profile])->with(compact('order'));
     }
     public function history_detail($id) {
-        $orders=Order_item::where('order_id', $id)->paginate(5);
-        return view('user.order.list-order')->with('orders', $orders);
+        $orders=Order_item::where('order_id', $id)->get();
+        $profile = Auth()->user();
+        return view('user.order.list-order', ['profile' => $profile, 'title' => 'order list' ])->with('orders', $orders);
     }
     public function pesanan() {
         $order = Order::where('user_id', Auth::user()->id)->orderBy('id', 'Desc')->get()->toArray();
-        return view('User.order.history', ['title' => 'pesanans'])->with(compact('order'));
+        $profile = Auth()->user();
+        return view('User.order.history', ['title' => 'orders', 'profile' => $profile])->with(compact('order'));
     }
 }

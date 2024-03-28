@@ -1,4 +1,4 @@
-@extends('Layouts.main')
+@extends('Template.Layouts.main')
 @section('content')
 <style>
 * {

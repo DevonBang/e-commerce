@@ -10,81 +10,123 @@ class ProductsController extends Controller
 {
     public function index()
     {
-        $product = Product::get();
+        // show data
+        $profile = Auth()->user();
+        $products = Product::orderBy('id', 'DESC')->get();
+
         return view('Admin.products.index',[
-            'products' => $product
+            'products' => $products,
+            "title" => 'product',
+            'profile' => $profile,
          ]);
-    }
-    public function create()
-    {
-        return view('Admin.products.create');
     }
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'nama_product' => 'required',
-            'slug' => 'required|unique:products',
-            'quantity' => 'required',
-            'price' => 'required',
-            'description' => 'required',
-            'image' => 'required|mimes:png,jpeg,jpg|max:2048',
-        ]);
-        
-        $foto = $request->file('image');
-        $filename = date('Y-m-d-').$foto->getClientOriginalName();
-        $path = 'foto-product/'.$filename;
-        
-        Storage::disk('public')->put($path, file_get_contents($foto));
+        try{
+            $validate = $request->validate([
+                'name' => 'required',
+                'slug' => 'required|unique:products',
+                'quantity' => 'required',
+                'price' => 'required',
+                'description' => 'required',
+                'image' => 'required|mimes:png,jpeg,jpg|max:2048',
+            ]);
+            
+            $store = new Product;
+            $store->name = $request->name;
+            $store->slug = $request->slug;
+            $store->quantity = $request->quantity;
+            $store->price = $request->price;
+            $store->description = $request->description;
 
-        $validate['image'] = $filename;
-        
-        Product::create($validate);
-        
-        return redirect()->route('admin.products');
+            if($request->hasFile('image')) {
+                $file = $request->file('image');
+                $ext = $file->getClientOriginalExtension();
+                $filename = date('Y-m-d').'-'.$request->slug.'.'.$ext;
+    
+                $file->move('storage/foto-product/', $filename);
+                $store->image = $filename;
+            }
+
+            $store->save();
+
+            // $foto = $request->file('image');
+            // $filename = date('Y-m-d-').$foto->getClientOriginalName();
+            // $path = 'foto-product/'.$filename;
+            
+            // Storage::disk('public')->put($path, file_get_contents($foto));
+    
+            // $validate['image'] = $filename;
+            
+            // Product::create($validate);
+            
+            // return redirect()->route('admin.products');
+
+            return ['status' => true, 'pesan' => 'Berhasil!'];
+        } catch(\Exception $e){
+            return ['status' => false, 'error' => 'Error'];
+        }
     }
-    public function edit(Product $product,$id)
+    public function edit($id)
     {
-        $data = Product::find($id);
-        return view('Admin.products.edit',[
-            'product' => $data
-        ]
-        );
+        $product = Product::find($id);
+        // $profile = Auth()->user();
+        if($product)
+        {
+            return response()->json([
+                'status' => 200,
+                'product' => $product,
+            ]);
+        }
+        else
+        {
+            return response()->json([
+                'status' => 404,
+                'message' => 'gak ada nih'
+            ]);
+        }
     }
     public function update(Request $request,$id)
     {
-        $validate = $request->validate([
-            'nama_product' => 'required',
-            'slug' => 'required',
-            'quantity' => 'required',
-            'price' => 'required',
-            'description' => 'required',
-            'image' => 'mimes:png,jpeg,jpg|max:2048',
-        ]);
-        
-        $find = Product::find($id);
+        try {
+            $validate = $request->validate([
+                'name' => 'required',
+                'slug' => 'required',
+                'quantity' => 'required',
+                'price' => 'required',
+                'description' => 'required',
+                'image' => 'mimes:png,jpeg,jpg|max:2048',
+            ]);
 
-        $foto = $request->file('image');
-        if($foto) {
-            $filename = date('Y-m-d').$foto->getClientOriginalName();
-            $path = 'foto-product/'.$filename;
+            $find = Product::find($id);
+            $find->name = $request->name;
+            $find->slug = $request->slug;
+            $find->quantity = $request->quantity;
+            $find->price = $request->price;
+            $find->description = $request->description;
             
-            if($find->image) {
-                Storage::disk('public')->delete('foto-product/' . $find->image);
+            if($request->hasFile('image')) {
+                $file = $request->file('image');
+                $ext = $file->getClientOriginalExtension();
+                $filename = date('Y-m-d').'-'.$request->slug.'.'.$ext;
+    
+                $file->move('storage/foto-product/', $filename);
+                $find->image = $filename;
             }
-            Storage::disk('public')->put($path, file_get_contents($foto));
-            $validate['image'] = $filename;
+            
+            $find->save();
+            
+            return ['status' => true, 'pesan' => 'Berhasil!'];
+        } catch(\Exception $e) {
+            return ['status' => false, 'error' => 'Error'];
         }
-        
-        Product::whereId($id)->update($validate);
-        
-        return redirect()->route('admin.products');
+        // dd($request->image);
     }
     public function destroy(Product $id)
     {
         $data = Product::find($id);
-
         Product::destroy($data);
-
         return redirect()->route('admin.products');
     }
+
 }

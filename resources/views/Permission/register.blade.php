@@ -1,4 +1,4 @@
-@extends('Layouts.main')
+@extends('Template.Layouts.main')
 @section('content')
 <style>
     * {
@@ -131,7 +131,7 @@ button:hover {
             @csrf
             <h1>Register</h1>
             <hr>
-            <p>Please regist!</p>
+            <p>Make New Account</p>
             <label for="name">Name</label>
             <input type="text" name="name" class="form-control rounded-top @error('name') is-invalid @enderror" id="name" placeholder="please enter yourname!" autofocus value="{{ old('name') }}">
             @error('name') 
